@@ -1,24 +1,35 @@
-let pressCount = 0;
+let aPressed = false;
+let bPressed = false;
 let gameShown = false;
 
-// Listen for key presses
 document.addEventListener("keydown", function (event) {
     if (event.key.toLowerCase() === "a") {
-        pressCount++;
+        aPressed = true;
+    }
+    if (event.key.toLowerCase() === "b") {
+        bPressed = true;
+    }
 
-        if (pressCount === 67 && !gameShown) {
-            showGame();
-        }
+    // If both are pressed at the same time
+    if (aPressed && bPressed && !gameShown) {
+        showGame();
+    }
+});
+
+document.addEventListener("keyup", function (event) {
+    if (event.key.toLowerCase() === "a") {
+        aPressed = false;
+    }
+    if (event.key.toLowerCase() === "b") {
+        bPressed = false;
     }
 });
 
 function showGame() {
     gameShown = true;
 
-    // Clear the page
     document.body.innerHTML = "";
 
-    // Create iframe
     const iframe = document.createElement("iframe");
     iframe.src = "https://game316009.konggames.com/gamez/0031/6009/live/index.html";
     iframe.style.width = "100%";
@@ -27,13 +38,11 @@ function showGame() {
 
     document.body.appendChild(iframe);
 
-    // Add floating button
     createFloatingButton();
 }
 
 function showMainImage() {
     gameShown = false;
-    pressCount = 0;
 
     document.body.innerHTML = "";
 
@@ -50,7 +59,7 @@ function showMainImage() {
 
 function createFloatingButton() {
     const btn = document.createElement("img");
-    btn.src = "favicon.png"; // your favicon image
+    btn.src = "favicon.png";
     btn.style.position = "fixed";
     btn.style.bottom = "15px";
     btn.style.right = "15px";
