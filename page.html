@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Key Hide Image</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+    }
 
+    #x {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Big Image -->
+  <img id="x" src="main.png" alt="Main Image">
+
+  <script>
+    const x = document.getElementById("x");
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "6" || event.key === "7") {
+        x.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>
